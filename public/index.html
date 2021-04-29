@@ -8,25 +8,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <style type="text/css">
-            #container {
-                border: 1px solid #aaa;
-                width: 100%;
-                height: 100%;
+            .flex-container {          
+                /* flex */
+                display: flex;
+                flex-direction: column;   
+                /* positioning */
+                position: absolute; 
+                top: 50px;
+                left: 50px;
+                width: calc(100% - 100px);
+                height: calc(100% - 100px);   
             }
-            .center {     
-                display: block;           
-                margin: auto;
-                width: 75vh;
-                height: 75vh;
+            #editor {       
+                width: 100%;
+                height: 80%; 
+                /* border */
+                border: 1px solid #aaa;
+            }
+            #output {    
+                width: 100%;
+                height: 20%; 
+                /* scrollbar */
+                overflow: auto;
+                /* border */
+                background-color: #aaa;
             }
         </style>
 
 	</head>
 	<body>
 
-        <div class="center">
+        <div class="flex-container">
+
             <h2>Online C Compiler</h2>
-            <div id="container"></div>
+            <div id="editor"></div>
+            <div id="output"></div>
+
 
             <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
             <script>
@@ -38,8 +55,8 @@
                 });
 
                 require(['vs/editor/editor.main'], function () {
-                    var container = document.getElementById('container');
-                    var editor = monaco.editor.create(container, {
+                    var editor1 = document.getElementById('editor');
+                    var editor2 = monaco.editor.create(editor1, {
                         value: [
                             'void main() {', 
                             '\tprintf("Hello world!\\n");', 
@@ -50,6 +67,7 @@
                 });
 
             </script>
+
         </div>
 
 	</body>
