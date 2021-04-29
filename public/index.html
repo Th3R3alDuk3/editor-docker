@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<title>ONCCO</title>
+
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style type="text/css">
+            #container {
+                border: 1px solid #aaa;
+                width: 100%;
+                height: 100%;
+            }
+            .center {     
+                display: block;           
+                margin: auto;
+                width: 75vh;
+                height: 75vh;
+            }
+        </style>
+
+	</head>
+	<body>
+
+        <div class="center">
+            <h2>Online C Compiler</h2>
+            <div id="container"></div>
+
+            <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+            <script>
+
+                require.config({ 
+                    paths: { 
+                        vs: '../node_modules/monaco-editor/min/vs' 
+                    } 
+                });
+
+                require(['vs/editor/editor.main'], function () {
+                    var container = document.getElementById('container');
+                    var editor = monaco.editor.create(container, {
+                        value: [
+                            'void main() {', 
+                            '\tprintf("Hello world!\\n");', 
+                            '}'
+                        ].join('\n'),
+                        language: 'c'
+                    });
+                });
+
+            </script>
+        </div>
+
+	</body>
+</html>

@@ -2,17 +2,17 @@
   "name": "oncco",
   "version": "1.0.0",
   "description": "Online C Compiler",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Th3R3alDuk3/onco.git"
   },
   "keywords": [
-    "C",
-    "Compiler"
+    "Online",
+    "C-Compiler"
   ],
   "author": "Paul Graff",
   "license": "MIT",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Th3R3alDuk3/onco#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "monaco-editor": "^0.23.0"
   }
 }
