@@ -1,8 +1,8 @@
 # oncco
 
-*On*line *C* *Co*mpiler  
+`On`line `C` `Co`mpiler  
   
-This is an interactive c-editor - [monaco-editor](https://microsoft.github.io/monaco-editor/) - that uses websockets and compiles the corresponding c-code on the server side.  
+This is an interactive [c-editor](https://microsoft.github.io/monaco-editor/) that uses **websockets** and compiles the corresponding c-code on the server side.  
 We prefer the [Tiny C Compiler](https://bellard.org/tcc/) because it is easier to use.
 
 ## install tcc
