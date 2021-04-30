@@ -1,4 +1,4 @@
-# oncco
+# OnCCo
 
 `On`line `C` `Co`mpiler  
   
