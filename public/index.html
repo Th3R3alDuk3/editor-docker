@@ -2,36 +2,69 @@
 <html>
 	<head>
 
-		<title>ONCCO</title>
+		<title>OnCCo</title>
 
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<meta http-equiv="refresh" content="3">-->
 
         <style type="text/css">
+            body {                
+                /* font */
+                font-family: Consolas, "Courier New", monospace;
+                /* color */
+                background-color: #1e1e1e;
+                color: #fff;
+            }
             .flex-container {          
                 /* flex */
                 display: flex;
                 flex-direction: column;   
-                /* positioning */
-                position: absolute; 
-                top: 50px;
-                left: 50px;
-                width: calc(100% - 100px);
-                height: calc(100% - 100px);   
+                /* distance */
+                margin: 30px;  
+                padding: 10px;
+                /* size */
+                height: calc(100vh - 80px);
             }
-            #editor {       
-                width: 100%;
-                height: 80%; 
-                /* border */
-                border: 1px solid #aaa;
+            .flex-item1 {
+                /* size */
+                line-height: 40px;
+                /* distance */
+                padding: 15px 20px;
             }
-            #output {    
-                width: 100%;
-                height: 20%; 
+            .flex-item2 {       
+                /* size */
+                flex: auto;
+            }
+            .flex-item3 {    
+                /* size */
+                height: 100px; 
+                /* distance */
+                padding: 15px 20px;
                 /* scrollbar */
                 overflow: auto;
+            }
+            .button {
+                /* color */
+                background-color: #1e1e1e;
+                color: #32cd32;
+                /* distance */
+                padding: 5px 10px;
                 /* border */
-                background-color: #aaa;
+                border: 1px solid #393939;
+                border-radius: 3px;
+            }
+            .button:hover {                
+                color: #228b22;
+            }
+            .button:active {
+                color: #006400;
+            }
+            #editor {
+                /* size */
+                height: 100%;
+                /* border */
+                border: 1px solid #393939;
             }
         </style>
 
@@ -40,10 +73,21 @@
 
         <div class="flex-container">
 
-            <h2>Online C Compiler</h2>
-            <div id="editor"></div>
-            <div id="output"></div>
+            <div class="flex-item1">
+                <div id="header">
+                    <b><u>On</u>line <u>C</u> <u>Co</u>mpiler</b>
+                    &ensp;
+                    <button class="button" onclick="run()">Run</button>
+                </div>
+            </div>
 
+            <div class="flex-item2">
+                <div id="editor"></div>
+            </div> 
+
+            <div class="flex-item3" id="output">
+                <i>Output:</i>
+            </div>
 
             <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
             <script>
@@ -53,18 +97,36 @@
                         vs: '../node_modules/monaco-editor/min/vs' 
                     } 
                 });
-
+                
+                // https://microsoft.github.io/monaco-editor/playground.html
                 require(['vs/editor/editor.main'], function () {
-                    var editor1 = document.getElementById('editor');
-                    var editor2 = monaco.editor.create(editor1, {
+                    var editor = document.getElementById('editor');
+                    window.editor = monaco.editor.create(editor, {
                         value: [
                             'void main() {', 
                             '\tprintf("Hello world!\\n");', 
                             '}'
                         ].join('\n'),
-                        language: 'c'
+                        language: 'c',
+                        theme: 'vs-dark'
                     });
                 });
+
+                var webSocket = new WebSocket("ws://localhost:8080");
+                var output = document.getElementById("output");
+
+                webSocket.onopen = (event) => {
+                    console.log('websocket connected ...');
+                }
+
+                webSocket.onmessage = (event) => {
+                    console.log(event.data);
+                    output.innerHTML += "<br>" + event.data;
+                }
+
+                function run() {
+                    webSocket.send(window.editor.getValue());
+                }
 
             </script>
 
