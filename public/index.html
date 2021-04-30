@@ -38,11 +38,13 @@
             }
             .flex-item3 {    
                 /* size */
-                height: 100px; 
+                height: 200px; 
                 /* distance */
                 padding: 15px 20px;
                 /* scrollbar */
                 overflow: auto;
+                /* linebreak */
+                white-space: pre-line;
             }
             .button {
                 /* color */
@@ -103,8 +105,13 @@
                     var editor = document.getElementById('editor');
                     window.editor = monaco.editor.create(editor, {
                         value: [
+                            '#include <stdio.h>',
+                            '',
                             'void main() {', 
-                            '\tprintf("Hello world!\\n");', 
+                            '   printf("Hello world!\\n");', 
+                            '   for (int i = 0; i < 10; i++) {',
+                            '      printf("%d\\n", i);',
+                            '   }',
                             '}'
                         ].join('\n'),
                         language: 'c',
@@ -121,7 +128,7 @@
 
                 webSocket.onmessage = (event) => {
                     console.log(event.data);
-                    output.innerHTML += "<br>" + event.data;
+                    output.innerHTML += event.data;
                 }
 
                 function run() {

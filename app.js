@@ -2,6 +2,7 @@ const express = require('express');
 const expressWs = require('express-ws');
 
 const app = express();
+// websocket support
 expressWs(app);
 
 /**/
@@ -23,17 +24,23 @@ app.ws('/', (ws, req) => {
 
   ws.on('message', msg => {
     
-    console.log(msg);
-
-    let process = spawn(
-      'gcc', 
-      ['-v']
+    // http://download.savannah.gnu.org/releases/tinycc/
+    let subprocess = spawn(
+      'tcc', ['-run', '-'],
+      {stdio: [
+        'pipe', 'pipe', 'pipe'
+      ]}
     );
+    
+    // write to stdin
+    subprocess.stdin.write(msg);
+    subprocess.stdin.end();
 
-    process.stdout.on('data', (data) => { ws.send(`${data}`); });  
-    process.stderr.on('data', (data) => { ws.send(`${data}`); }); 
+    // redirect stdout and stderr
+    subprocess.stdout.on('data', (data) => { ws.send(`${data}`); });  
+    subprocess.stderr.on('data', (data) => { ws.send(`${data}`); }); 
 
-    process.on('close', (code) => {
+    subprocess.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
     });
 
