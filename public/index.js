@@ -42,16 +42,21 @@ require(['vs/editor/editor.main'], function () {
 
 /* WEBSOCKETS */
 
-var webSocket = new WebSocket("ws://localhost:8080");
+var webSocket = new WebSocket("ws://"+ location.host);
 
 webSocket.onopen = (event) => {
     console.log('websocket connected ...');
 }
 
 webSocket.onmessage = (event) => {
+
+    var msg = JSON.parse(event.data);
+
     window.output.setValue(
-        window.output.getValue() + event.data
+        window.output.getValue() + 
+        "[" + msg.type + "] " + msg.data
     );
+    
 }
 
 function run() {
