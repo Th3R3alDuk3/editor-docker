@@ -21,6 +21,9 @@ tar -xjf tcc-0.9.27.tar.bz2
 
 cd tcc-0.9.27
 ```
+
+In the corresponding folder there is also a README for the further steps.
+
 ```
 ./configure
 
