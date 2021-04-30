@@ -38,13 +38,7 @@
             }
             .flex-item3 {    
                 /* size */
-                height: 200px; 
-                /* distance */
-                padding: 15px 20px;
-                /* scrollbar */
-                overflow: auto;
-                /* linebreak */
-                white-space: pre-line;
+                height: 300px;
             }
             .button {
                 /* color */
@@ -62,7 +56,7 @@
             .button:active {
                 color: #006400;
             }
-            #editor {
+            #editor, #output {
                 /* size */
                 height: 100%;
                 /* border */
@@ -87,8 +81,8 @@
                 <div id="editor"></div>
             </div> 
 
-            <div class="flex-item3" id="output">
-                <i>Output:</i>
+            <div class="flex-item3">
+                <div id="output"></div>
             </div>
 
             <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
@@ -102,21 +96,36 @@
                 
                 // https://microsoft.github.io/monaco-editor/playground.html
                 require(['vs/editor/editor.main'], function () {
+
                     var editor = document.getElementById('editor');
-                    window.editor = monaco.editor.create(editor, {
+
+                    window.editor = monaco.editor.create(editor, {                        
+                        language: 'c',
+                        theme: 'vs-dark',
                         value: [
                             '#include <stdio.h>',
                             '',
                             'void main() {', 
-                            '   printf("Hello world!\\n");', 
-                            '   for (int i = 0; i < 10; i++) {',
-                            '      printf("%d\\n", i);',
-                            '   }',
+                            '   printf("Hello world!");',
                             '}'
                         ].join('\n'),
-                        language: 'c',
-                        theme: 'vs-dark'
                     });
+
+                    var output = document.getElementById('output');
+
+                    window.output = monaco.editor.create(output, {
+                        language: 'plaintext',
+                        theme: 'vs-dark',
+                        value: 'OUTPUT',
+                        folding: false,
+                        lineDecorationsWidth: 0,
+	                    scrollBeyondLastLine: true,
+                        lineNumbers: 'off',
+                        minimap: {
+                            enabled: false
+                        }
+                    });
+
                 });
 
                 var webSocket = new WebSocket("ws://localhost:8080");
@@ -127,12 +136,14 @@
                 }
 
                 webSocket.onmessage = (event) => {
-                    console.log(event.data);
-                    output.innerHTML += event.data;
+                    window.output.setValue(event.data);
                 }
 
                 function run() {
-                    webSocket.send(window.editor.getValue());
+                    window.output.setValue('');
+                    webSocket.send(
+                        window.editor.getValue()
+                    );
                 }
 
             </script>
