@@ -11,7 +11,7 @@ Feel free to use a different compiler or programming language. You hardly have t
 
 ![alt text](https://github.com/Th3R3alDuk3/oncco/blob/main/app.gif "OnCCo")
 
-## install tcc
+## install tcc-compiler
 
 At first you need to [download](http://download.savannah.gnu.org/releases/tinycc/) the [tcc-compiler](https://bellard.org/tcc/) by Fabrice Bellard.  
 Use the [latest version 0.9.27](http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2) and run the following commands.
