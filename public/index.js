@@ -49,7 +49,9 @@ webSocket.onopen = (event) => {
 }
 
 webSocket.onmessage = (event) => {
-    window.output.setValue(event.data);
+    window.output.setValue(
+        window.output.getValue() + event.data
+    );
 }
 
 function run() {
