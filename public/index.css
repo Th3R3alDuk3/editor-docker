@@ -11,9 +11,9 @@ body {
     display: flex;
     flex-direction: column;   
     /* size */
-    height: calc(100vh - 80px);
+    height: calc(100vh - 60px);
     /* distance */
-    margin: 30px;  
+    margin: 20px;  
     padding: 10px;
 }
 
