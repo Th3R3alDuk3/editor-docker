@@ -7,6 +7,10 @@ expressWs(app);
 
 /**/
 
+// template engine
+// app.set('view engine', 'pug');
+// app.set('views', 'public');
+
 // redirect static files
 app.use(express.static('public'));
 app.use("/node_modules", express.static('node_modules'));
@@ -37,8 +41,9 @@ app.ws('/', (ws, req) => {
     subprocess.stdin.end();
 
     // redirect stdout and stderr
-    subprocess.stdout.on('data', (data) => { ws.send(`${data}`); });  
-    subprocess.stderr.on('data', (data) => { ws.send(`${data}`); }); 
+    // TODO: diff between stdout and stderr
+    subprocess.stdout.on('data', (data) => { ws.send(JSON.stringify({type: 'stdout', data: `${data}`})); });  
+    subprocess.stderr.on('data', (data) => { ws.send(JSON.stringify({type: 'stderr', data: `${data}`})); }); 
 
     subprocess.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
@@ -55,9 +60,10 @@ app.ws('/', (ws, req) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html')
+  // res.render('index', {});
+  res.sendFile("index.html");
 });
 
-app.listen(8080, () => {
-  console.log('http://localhost:8080')
+app.listen(8080, '0.0.0.0', () => {
+  console.log('http://0.0.0.0:8080')
 });

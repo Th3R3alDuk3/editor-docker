@@ -1,7 +1,7 @@
 {
   "name": "oncco",
   "version": "1.0.0",
-  "description": "Online C Editor + Compiler",
+  "description": "Interactive C-Editor that uses a server side C-Compiler",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
@@ -11,9 +11,8 @@
     "url": "git+https://github.com/Th3R3alDuk3/oncco.git"
   },
   "keywords": [
-    "Online",
-    "C-Editor",
-    "C-Compiler"
+    "tcc-compiler",
+    "monaco-editor"
   ],
   "author": "Paul Graff",
   "license": "MIT",

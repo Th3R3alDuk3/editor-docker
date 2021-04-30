@@ -1,0 +1,28 @@
+doctype html
+html
+    head
+        title OnCCo
+        
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+        link(rel='stylesheet', href='index.css')
+        
+    body
+        .flex-container
+            .flex-item1
+                #header
+                    label Online Compiler
+                    button(type='button' class='button' onclick='run()') Run
+
+            .flex-item2
+                #editor
+
+            .flex-item3
+                #output
+
+            script(src="node_modules/monaco-editor/min/vs/loader.js")
+            script(src="index.js").
+
+
+                
