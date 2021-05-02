@@ -57,14 +57,11 @@ require(['vs/editor/editor.main'], function () {
     window.output = monaco.editor.create(output, {
         language: 'console',
         theme: 'console',
-        value: '[output] ↓',
+        value: '[output] ↓\n...',
         folding: false,
-        lineDecorationsWidth: 0,
-        scrollBeyondLastLine: true,
         lineNumbers: 'off',
-        minimap: {
-            enabled: false
-        }
+        lineDecorationsWidth: 0,
+        minimap: {enabled: false}
     });
 
 });
