@@ -14,7 +14,7 @@ require(['vs/editor/editor.main'], function () {
 
     var editor = document.getElementById('editor');
 
-    window.editor = monaco.editor.create(editor, {                        
+    window.onccoEditor = monaco.editor.create(editor, {                        
         language: 'c',
         theme: 'vs-dark',
         value: [
@@ -54,7 +54,7 @@ require(['vs/editor/editor.main'], function () {
 
     var output = document.getElementById('output');
 
-    window.output = monaco.editor.create(output, {
+    window.onccoOutput = monaco.editor.create(output, {
         language: 'console',
         theme: 'console',
         value: '[output] ↓\n...',
@@ -65,7 +65,7 @@ require(['vs/editor/editor.main'], function () {
     });
 
 });
-
+    
 /* WEBSOCKETS */
 
 var webSocket = new WebSocket("ws://"+ location.host);
@@ -78,16 +78,22 @@ webSocket.onmessage = (event) => {
 
     var msg = JSON.parse(event.data);
 
-    window.output.setValue(
-        window.output.getValue() + 
+    window.onccoOutput.setValue(
+        window.onccoOutput.getValue() + 
         "[" + msg.type + "] ↓\n" + msg.data
     );
-    
+
 }
 
 function run() {
-    window.output.setValue('');
+    window.onccoOutput.setValue('');
     webSocket.send(
-        window.editor.getValue()
+        window.onccoEditor.getValue()
     );
+}
+
+/* ADJUST MONACO EDITOR */
+
+window.onresize = () => {
+    window.location.reload();
 }
