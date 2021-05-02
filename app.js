@@ -7,7 +7,7 @@ expressWs(app);
 
 /**/
 
-// template engine
+// pug template engine
 // app.set('view engine', 'pug');
 // app.set('views', 'public');
 
@@ -39,11 +39,18 @@ app.ws('/', (ws, req) => {
     // write to stdin
     subprocess.stdin.write(msg);
     subprocess.stdin.end();
+    
+    subprocess.stdout.on('data', (data) => {
+      ws.send(JSON.stringify({
+        type: 'stdout', data: data.toString()
+      }));
+    });  
 
-    // redirect stdout and stderr
-    // TODO: diff between stdout and stderr
-    subprocess.stdout.on('data', (data) => { ws.send(JSON.stringify({type: 'stdout', data: `${data}`})); });  
-    subprocess.stderr.on('data', (data) => { ws.send(JSON.stringify({type: 'stderr', data: `${data}`})); }); 
+    subprocess.stderr.on('data', (data) => {
+      ws.send(JSON.stringify({
+        type: 'stderr', data: data.toString()
+      }));
+    }); 
 
     subprocess.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
@@ -60,7 +67,6 @@ app.ws('/', (ws, req) => {
 });
 
 app.get('/', (req, res) => {
-  // res.render('index', {});
   res.sendFile("index.html");
 });
 

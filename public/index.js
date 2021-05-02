@@ -7,6 +7,9 @@ require.config({
 });
 
 // https://microsoft.github.io/monaco-editor/playground.html
+
+/* SET MONACO EDITOR */
+
 require(['vs/editor/editor.main'], function () {
 
     var editor = document.getElementById('editor');
@@ -23,11 +26,35 @@ require(['vs/editor/editor.main'], function () {
         ].join('\n'),
     });
 
+    /* REGISTER MONACO LANGUAGE */
+
+    monaco.languages.register({id: 'console'});
+
+    monaco.languages.setMonarchTokensProvider('console', {
+        tokenizer: {
+            root: [
+                [/(\[stderr\])(.*)/, 'stderr'],
+                [/(\[stdout\])(.*)/, 'stdout'],
+            ]
+        }
+    });
+
+    monaco.editor.defineTheme('console', {
+        base: 'vs-dark',
+        inherit: true,
+        rules: [
+            {token: 'stderr', foreground: '#ce9178'},
+            {token: 'stdout', foreground: '#32cd32'},
+        ]
+    });
+
+    /* SET MONACO OUTPUT */
+
     var output = document.getElementById('output');
 
     window.output = monaco.editor.create(output, {
-        language: 'plaintext',
-        theme: 'vs-dark',
+        language: 'console',
+        theme: 'console',
         value: 'OUTPUT',
         folding: false,
         lineDecorationsWidth: 0,
@@ -54,7 +81,7 @@ webSocket.onmessage = (event) => {
 
     window.output.setValue(
         window.output.getValue() + 
-        "[" + msg.type + "] " + msg.data
+        "[" + msg.type + "] ↓\n" + msg.data
     );
     
 }
