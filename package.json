@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Th3R3alDuk3/oncco.git"
+    "url": "git+https://github.com/Th3R3alDuk3/OnCCo.git"
   },
   "keywords": [
     "tcc-compiler",
@@ -17,9 +17,9 @@
   "author": "Paul Graff",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Th3R3alDuk3/oncco/issues"
+    "url": "https://github.com/Th3R3alDuk3/OnCCo/issues"
   },
-  "homepage": "https://github.com/Th3R3alDuk3/oncco#readme",
+  "homepage": "https://github.com/Th3R3alDuk3/OnCCo#readme",
   "dependencies": {
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
