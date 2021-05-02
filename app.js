@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const expressWs = require('express-ws');
 
 const app = express();
@@ -11,13 +12,16 @@ expressWs(app);
 // app.set('view engine', 'pug');
 // app.set('views', 'public');
 
-// redirect static files
-app.use(express.static('public'));
-app.use("/node_modules", express.static('node_modules'));
+// support sessions
+app.use(session({secret: 'OnCCoSecret'}));
 
 // support json- and url-encoded bodies
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+// redirect static files
+app.use(express.static('public'));
+app.use("/node_modules", express.static('node_modules'));
 
 /**/
 
