@@ -1,5 +1,4 @@
 const express = require('express');
-const session = require('express-session');
 const expressWs = require('express-ws');
 
 const app = express();
@@ -8,12 +7,12 @@ expressWs(app);
 
 /**/
 
-// pug template engine
+// support pug template engine
 // app.set('view engine', 'pug');
 // app.set('views', 'public');
 
 // support sessions
-app.use(session({secret: 'OnCCoSecret'}));
+// app.use(session({secret: 'OnCCoSecret'}));
 
 // support json- and url-encoded bodies
 app.use(express.json());
