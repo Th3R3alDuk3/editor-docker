@@ -2,7 +2,7 @@
 
 `On`line `C` `Co`mpiler  
   
-This is an interactive **c-editor** that uses a **server side c-compiler**.  
+This is an online **c-editor** that uses a **server side c-compiler**.  
   
 The project was equipped with some useful techniques and plugins such as websockets or the [monaco-editor](https://microsoft.github.io/monaco-editor/) from Microsoft.  
 We use the [tcc-compiler](https://bellard.org/tcc/) from Fabrice Bellard because it is best suited for our purposes.  

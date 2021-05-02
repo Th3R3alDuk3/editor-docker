@@ -1,7 +1,7 @@
 {
   "name": "oncco",
   "version": "1.0.0",
-  "description": "Interactive C-Editor that uses a server side C-Compiler",
+  "description": "online C-Editor that uses a server side C-Compiler",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"

@@ -35,6 +35,7 @@ require(['vs/editor/editor.main'], function () {
             root: [
                 [/(\[stderr\])(.*)/, 'stderr'],
                 [/(\[stdout\])(.*)/, 'stdout'],
+                [/(\[output\])(.*)/, 'output'],
             ]
         }
     });
@@ -45,6 +46,7 @@ require(['vs/editor/editor.main'], function () {
         rules: [
             {token: 'stderr', foreground: '#ce9178'},
             {token: 'stdout', foreground: '#32cd32'},
+            {token: 'output', foreground: '#569cd6'}
         ]
     });
 
@@ -55,7 +57,7 @@ require(['vs/editor/editor.main'], function () {
     window.output = monaco.editor.create(output, {
         language: 'console',
         theme: 'console',
-        value: 'OUTPUT',
+        value: '[output] ↓',
         folding: false,
         lineDecorationsWidth: 0,
         scrollBeyondLastLine: true,
