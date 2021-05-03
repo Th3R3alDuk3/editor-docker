@@ -1,7 +1,7 @@
 {
   "name": "OCI",
   "version": "1.0.0",
-  "description": "online C-Editor that uses a server side C-Interpreter",
+  "description": "online C-editor that uses a server side C-interpreter",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
