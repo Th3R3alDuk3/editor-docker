@@ -1,14 +1,14 @@
 {
-  "name": "OnCCo",
+  "name": "OCI",
   "version": "1.0.0",
-  "description": "online C-Editor that uses a server side C-Compiler",
+  "description": "online C-Editor that uses a server side C-Interpreter",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Th3R3alDuk3/OnCCo.git"
+    "url": "git+https://github.com/Th3R3alDuk3/OCI.git"
   },
   "keywords": [
     "tcc-compiler",
@@ -17,9 +17,9 @@
   "author": "Paul Graff",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Th3R3alDuk3/OnCCo/issues"
+    "url": "https://github.com/Th3R3alDuk3/OCI/issues"
   },
-  "homepage": "https://github.com/Th3R3alDuk3/OnCCo#readme",
+  "homepage": "https://github.com/Th3R3alDuk3/OCI#readme",
   "dependencies": {
     "express": "^4.17.1",
     "express-ws": "^4.0.0",

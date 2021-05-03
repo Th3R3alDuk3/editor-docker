@@ -12,7 +12,7 @@ expressWs(app);
 // app.set('views', 'public');
 
 // support sessions
-// app.use(session({secret: 'OnCCoSecret'}));
+// app.use(session({secret: 'OCISecret'}));
 
 // support json- and url-encoded bodies
 app.use(express.json());
