@@ -9,7 +9,7 @@ We use the [tcc-compiler](https://bellard.org/tcc/) from Fabrice Bellard because
   
 Feel free to use a different interpreter or programming language. You hardly have to change anything!
 
-![alt text](https://github.com/Th3R3alDuk3/oncco/blob/main/app.gif "OnCCo")
+![alt text](https://github.com/Th3R3alDuk3/oncco/blob/main/public/index.gif "OnCCo")
 
 ## install tcc-compiler
 
