@@ -4,16 +4,16 @@
   
 This is an online **c-editor** that uses a **server side c-interpreter**.  
   
-The project was equipped with some useful techniques and plugins such as websockets or the [monaco-editor](https://microsoft.github.io/monaco-editor/) from Microsoft.  
-We use the [tcc-compiler](https://bellard.org/tcc/) from Fabrice Bellard because it is best suited for our purposes.  
+The project was equipped with some useful techniques and plugins such as websockets or the [Monaco-Editor](https://microsoft.github.io/monaco-editor/) from Microsoft.  
+We use the [Tiny C Compiler](https://bellard.org/tcc/) from Fabrice Bellard because it is best suited for our purposes.  
   
 Feel free to use a different interpreter or programming language. You hardly have to change anything!
 
 ![alt text](https://github.com/Th3R3alDuk3/oncco/blob/main/public/index.gif "OCI")
 
-## install tcc-compiler
+## install tcc
 
-At first you need to [download](http://download.savannah.gnu.org/releases/tinycc/) the [tcc-compiler](https://bellard.org/tcc/) by Fabrice Bellard.  
+At first you need to [download](http://download.savannah.gnu.org/releases/tinycc/) the [Tiny C Compiler](https://bellard.org/tcc/) by Fabrice Bellard.  
 Use the [latest version 0.9.27](http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2) and run the following commands.
 
 ```
@@ -37,7 +37,7 @@ tcc -v
 
 ## start nodejs
 
-After installation of the [tcc-compiler](https://bellard.org/tcc/) install all other dependencies and start nodejs.
+After installation of the [Tiny C Compiler](https://bellard.org/tcc/) install all other dependencies and start nodejs.
 
 ```
 npm install
