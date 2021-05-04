@@ -12,16 +12,16 @@ require.config({
 
 require(['vs/editor/editor.main'], function () {
 
-    var editor = document.getElementById('editor');
+    var tccEditor = document.getElementById('tccEditor');
 
-    window.ociEditor = monaco.editor.create(editor, {                        
+    window.tccEditor = monaco.editor.create(tccEditor, {                        
         language: 'c',
         theme: 'vs-dark',
         value: [
             '#include <stdio.h>',
             '',
             'void main() {', 
-            '   printf("Hello world!");',
+            '   printf("Hello world!\\n");',
             '}'
         ].join('\n'),
     });
@@ -52,9 +52,9 @@ require(['vs/editor/editor.main'], function () {
 
     /* SET MONACO OUTPUT */
 
-    var output = document.getElementById('output');
+    var tccOutput = document.getElementById('tccOutput');
 
-    window.ociOutput = monaco.editor.create(output, {
+    window.tccOutput = monaco.editor.create(tccOutput, {
         language: 'console',
         theme: 'console',
         value: '[output] ↓\n...',
@@ -65,7 +65,13 @@ require(['vs/editor/editor.main'], function () {
     });
 
 });
-    
+
+/* ADJUST MONACO EDITOR */
+
+window.onresize = () => {
+    window.location.reload();
+}
+
 /* WEBSOCKETS */
 
 var webSocket = new WebSocket("ws://"+ location.host);
@@ -78,22 +84,16 @@ webSocket.onmessage = (event) => {
 
     var msg = JSON.parse(event.data);
 
-    window.ociOutput.setValue(
-        window.ociOutput.getValue() + 
+    window.tccOutput.setValue(
+        window.tccOutput.getValue() + 
         "[" + msg.type + "] ↓\n" + msg.data
     );
 
 }
 
 function run() {
-    window.ociOutput.setValue('');
+    window.tccOutput.setValue('');
     webSocket.send(
-        window.ociEditor.getValue()
+        window.tccEditor.getValue()
     );
-}
-
-/* ADJUST MONACO EDITOR */
-
-window.onresize = () => {
-    window.location.reload();
 }

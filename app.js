@@ -11,9 +11,6 @@ expressWs(app);
 // app.set('view engine', 'pug');
 // app.set('views', 'public');
 
-// support sessions
-// app.use(session({secret: 'OCISecret'}));
-
 // support json- and url-encoded bodies
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -32,6 +29,7 @@ app.ws('/', (ws, req) => {
   ws.on('message', msg => {
     
     // http://download.savannah.gnu.org/releases/tinycc/
+
     let subprocess = spawn(
       'tcc', ['-run', '-'],
       {stdio: [
@@ -39,7 +37,6 @@ app.ws('/', (ws, req) => {
       ]}
     );
     
-    // write to stdin
     subprocess.stdin.write(msg);
     subprocess.stdin.end();
     

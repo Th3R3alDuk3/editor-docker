@@ -1,25 +1,25 @@
 {
-  "name": "OCI",
+  "name": "editor-tcc",
   "version": "1.0.0",
-  "description": "online C-editor that uses a server side C-interpreter",
+  "description": "online C-editor that uses a server-side C-interpreter",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Th3R3alDuk3/OCI.git"
+    "url": "git+https://github.com/Th3R3alDuk3/editor-tcc.git"
   },
   "keywords": [
-    "tcc-compiler",
+    "tcc",
     "monaco-editor"
   ],
   "author": "Paul Graff",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Th3R3alDuk3/OCI/issues"
+    "url": "https://github.com/Th3R3alDuk3/editor-tcc/issues"
   },
-  "homepage": "https://github.com/Th3R3alDuk3/OCI#readme",
+  "homepage": "https://github.com/Th3R3alDuk3/editor-tcc#readme",
   "dependencies": {
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
