@@ -6,11 +6,12 @@ This is an online **C-editor** that uses a **server-side C-interpreter**.
 
 In this project some great API's and modules like *WebSockets* or [monaco-editor](https://microsoft.github.io/monaco-editor/) were used.  
 Because it is small and suitable for our requirements, we opted for the [tcc](https://bellard.org/tcc/) compiler/interpreter from *Fabrice Bellard*.  
+
 Feel free to use a different interpreter or programming language. You hardly have to change anything!
 
 ## install tcc
 
-At first you need to [download](http://download.savannah.gnu.org/releases/tinycc/) [tcc](https://bellard.org/tcc/).  
+At first you need to download [tcc](https://bellard.org/tcc/).  
 Use the latest version [0.9.27](http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2) and run the following commands.
 
 ```
@@ -32,9 +33,9 @@ make install
 tcc -v
 ```
 
-Now you should test the included C-interpreter.
+Now you should test the C-interpreter.
 
-```
+```c
 tcc -run -
 #include <stdio.h>
 void main() {
