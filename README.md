@@ -17,7 +17,7 @@ At first you need to [download](http://download.savannah.gnu.org/releases/tinycc
 Use the [latest version 0.9.27](http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2) and run the following commands.
 
 ```
-curl -fSL -O -J http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2
+wget http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2
 tar -xjf tcc-0.9.27.tar.bz2
 
 cd tcc-0.9.27
