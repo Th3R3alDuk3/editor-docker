@@ -2,7 +2,7 @@
   
 This is an online **C-editor** that uses a **server-side C-interpreter**.  
   
-![editor-tcc](public/index.gif "editor-tcc")
+![editor-tcc](preview.gif "editor-tcc")
 
 In this project some great API's and modules like *WebSockets* or [monaco-editor](https://microsoft.github.io/monaco-editor/) were used.  
 Because it is small and suitable for our requirements, we opted for the [tcc](https://bellard.org/tcc/) compiler/interpreter from *Fabrice Bellard*.  
