@@ -62,6 +62,7 @@ void main() {
             language: "console",
             theme: "console",
             value: "[output] ↓\n...",
+            readOnly: true,
             folding: false,
             lineNumbers: "off",
             lineDecorationsWidth: 0,
