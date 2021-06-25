@@ -1,2 +1,0 @@
-FROM tatsushid/tinycore:latest
-RUN tce-load -wic tcc

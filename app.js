@@ -24,6 +24,7 @@ app.ws("/", (websocket, request) => {
 
     websocket.on("message", msg => {
 
+        // TODO: install tinycc
         let subprocess = spawn(
             "tcc", ["-run", "-"], {
                 stdio: [
@@ -31,18 +32,6 @@ app.ws("/", (websocket, request) => {
                 ]
             }
         );
-    
-        /**
-         * DOCKER
-    
-        let subprocess = spawn(
-            "docker", ["run", "editor-tcc", "tcc", "-run", "-"], {
-                stdio: [
-                    "pipe", "pipe", "pipe"
-                ]
-            }
-        );
-        */
 
         subprocess.stdin.write(msg);
         subprocess.stdin.end();
