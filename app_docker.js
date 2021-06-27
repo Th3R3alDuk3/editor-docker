@@ -78,4 +78,6 @@ docker.createImage({
         console.log("http://0.0.0.0:8080")
     });
 
+}).catch(error => {
+    console.log("please start docker daemon");
 });
