@@ -1,25 +1,26 @@
 {
-    "name": "editor-tcc",
+    "name": "editor-server-side",
     "version": "1.0.0",
-    "description": "online C-editor that uses a server-side C-interpreter",
+    "description": "online C-editor that uses server-side compreters",
     "main": "app.js",
     "scripts": {
         "start": "node app_docker.js"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Th3R3alDuk3/editor-tcc.git"
+        "url": "git+https://github.com/Th3R3alDuk3/editor-server-side.git"
     },
     "keywords": [
-        "tcc",
+        "server-side compreters",
+        "dockerode",
         "monaco-editor"
     ],
     "author": "Paul Graff",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/Th3R3alDuk3/editor-tcc/issues"
+        "url": "https://github.com/Th3R3alDuk3/editor-server-side/issues"
     },
-    "homepage": "https://github.com/Th3R3alDuk3/editor-tcc#readme",
+    "homepage": "https://github.com/Th3R3alDuk3/editor-server-side#readme",
     "dependencies": {
         "express": "^4.17.1",
         "express-ws": "^4.0.0",
