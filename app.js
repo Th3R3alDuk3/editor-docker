@@ -24,6 +24,12 @@ app.ws("/", (websocket, request) => {
 
     websocket.on("message", msg => {
 
+        // msg type and data
+        msg = JSON.parse(msg);
+
+        if (msg.type != "tcc")
+            throw Error(msg.type + " is not supported");
+
         // TODO: install tinycc
         let subprocess = spawn(
             "tcc", ["-run", "-"], {
@@ -33,7 +39,7 @@ app.ws("/", (websocket, request) => {
             }
         );
 
-        subprocess.stdin.write(msg);
+        subprocess.stdin.write(msg.data);
         subprocess.stdin.end();
 
         subprocess.stdout.on("data", (data) => {

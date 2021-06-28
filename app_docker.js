@@ -27,10 +27,10 @@ var streamStdout = Stream.Writable();
 var streamStderr = Stream.Writable();
 
 docker.createImage({
-    fromImage: "th3r3alduk3/ubuntu-tcc:latest"
+    fromImage: "th3r3alduk3/ubuntu:latest"
 }).then(() => {
 
-    console.log("docker image = th3r3alduk3/ubuntu-tcc:latest")
+    console.log("docker image = th3r3alduk3/ubuntu:latest")
 
     app.ws("/", (websocket, request) => {
 
@@ -49,15 +49,27 @@ docker.createImage({
         };
 
         websocket.on("message", msg => {
+
+            // msg type and data
+            msg = JSON.parse(msg);
+
             // start temporary docker container
             docker.run(
-                "th3r3alduk3/ubuntu-tcc",
-                ["bash", "-c", "echo '" + msg + "' > ./out && tcc -run ./out"],
-                [streamStdout, streamStderr], { Tty: false },
-                (error, data, container) => {
+                "th3r3alduk3/ubuntu",
+                ["bash", "-c", "echo '" + msg.data + "' > ./file; " + {
+                    // selected compiler or interpreter
+                    "tcc": "tcc -run ./file",
+                    "gcc": "gcc -o ./binary -x c ./file; ./binary",
+                    "python2": "python2 ./file",
+                    "python3": "python3 ./file"
+                }[msg.type]],
+                [streamStdout, streamStderr], { 
+                    Tty: false 
+                }, (error, data, container) => {
                     return container.remove();
                 }
             );
+
         });
 
         websocket.on("close", () => {
