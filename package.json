@@ -11,7 +11,10 @@
         "url": "git+https://github.com/Th3R3alDuk3/editor-server-side.git"
     },
     "keywords": [
-        "server-side compreters",
+        "nodejs",
+        "websockets",
+        "tcc", "tinycc",
+        "docker",
         "dockerode",
         "monaco-editor"
     ],
