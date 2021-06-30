@@ -4,9 +4,8 @@ This is an online **C-editor** that uses **server-side compreters**.
   
 ![editor-server-side](preview.gif "editor-server-side")
 
-I used some great techniques and frameworks such as *WebSockets*, [Dockerode](https://www.npmjs.com/package/dockerode) 
-and [Monaco](https://microsoft.github.io/monaco-editor/) in this project. Feel free to customize the interpreters or 
-programming languages that have been used.
+I used some great techniques and frameworks such as *WebSockets*, [Dockerode](https://www.npmjs.com/package/dockerode) and [Monaco](https://microsoft.github.io/monaco-editor/) in this project. 
+Feel free to customize the interpreters or programming languages that have been used.
 
 ## installation
 
@@ -32,8 +31,6 @@ docker build -t ubuntu - < docker/Dockerfile
 docker run ubuntu tcc -v
 ```
 
-### upload container using docker hub
-
 Upload your tagged image to [docker hub](https://hub.docker.com/).
 
 ```
@@ -45,8 +42,7 @@ docker push <username>/ubuntu:latest
 
 ## manual installation of tinycc
 
-At first you need to download [tcc](https://bellard.org/tcc/).  
-Use the latest version [0.9.27](http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2).
+At first you need to download [tcc](https://bellard.org/tcc/). Use the latest version [0.9.27](http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2).
 
 ```
 wget http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2
@@ -73,4 +69,4 @@ printf("Hello world!");
 }
 ```
 
-Press Ctrl-D ...
+Press `Ctrl-D` ...
