@@ -1,6 +1,6 @@
 # editor-server-side
   
-This is an online **C-editor** that uses **server-side compreters**.  
+This is an online **editor** that uses **server-side compilers**.  
   
 ![editor-server-side](preview.gif "editor-server-side")
 
