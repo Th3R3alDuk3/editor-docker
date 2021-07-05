@@ -1,7 +1,7 @@
 {
     "name": "editor-server-side",
     "version": "1.0.0",
-    "description": "online C-editor that uses server-side compreters",
+    "description": "online editor that uses server-side compilers",
     "main": "app.js",
     "scripts": {
         "start": "node app_docker.js"
