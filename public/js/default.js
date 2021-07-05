@@ -10,17 +10,17 @@ var select = document.getElementById("select");
 
 var webSocket = new WebSocket("ws://" + location.host);
 
-webSocket.onopen = (event) => {
+webSocket.onopen = event => {
     console.log("websocket connected ...");
 }
 
-webSocket.onmessage = (event) => {
+webSocket.onmessage = event => {
 
-    var msg = JSON.parse(event.data);
+    var message = JSON.parse(event.data);
 
     window.output.setValue(
         window.output.getValue() +
-        "[" + msg.type + "] ↓\n" + msg.data
+        "[" + message.type + "] ↓\n" + message.data
     );
 
 }

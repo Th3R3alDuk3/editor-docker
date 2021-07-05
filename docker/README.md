@@ -3,7 +3,7 @@
 Install [docker](https://docs.docker.com/get-docker) and execute following commands.
 
 ```
-docker build -t ubuntu - < Dockerfile
+docker build --tag ubuntu - < Dockerfile
 docker run ubuntu tcc -v
 ```
 
