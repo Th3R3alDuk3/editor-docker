@@ -30,7 +30,7 @@ docker.createImage({
     fromImage: "th3r3alduk3/ubuntu:latest"
 }).then(() => {
 
-    console.log("docker image = th3r3alduk3/ubuntu:latest")
+    console.log("docker image = th3r3alduk3/editor-server-side")
 
     app.ws("/", (websocket, request) => {
 
