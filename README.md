@@ -4,69 +4,32 @@ This is an online **editor** that uses **server-side compilers**.
   
 ![editor-server-side](preview.gif "editor-server-side")
 
-I used some great techniques and frameworks such as *WebSockets*, [Dockerode](https://www.npmjs.com/package/dockerode) and [Monaco](https://microsoft.github.io/monaco-editor/) in this project. 
-Feel free to customize the interpreters or programming languages that have been used.
+I am using some well-known frameworks such as *websockets*, [dockerode](https://www.npmjs.com/package/dockerode) or [monaco-editor](https://microsoft.github.io/monaco-editor/) in this project.  
+You can adapt any compiler or programming language as you wish.
 
 ## installation
 
-Install the following javascript runtime and container virtualization tool.
-- [Node.js](https://nodejs.org/en/download/)
-- [Docker](https://www.docker.com/products/docker-desktop)
-  
-Download all required dependencies and start *Node.js*.
+Install [node.js](https://nodejs.org/en/download/), [docker](https://www.docker.com/products/docker-desktop) and all [dependencies](package.json).
   
 ```
 npm install
 npm start
 ```
-  
----
-  
-## manual configuration of a container
+    
+## container configuration
 
-Install [Docker](https://docs.docker.com/get-docker) and customize the configuration file `docker/Dockerfile`.
+Install [docker](https://docs.docker.com/get-docker) and customize the configuration file `docker/Dockerfile`.
 
 ```
-docker build -t ubuntu - < docker/Dockerfile
-docker run ubuntu tcc -v
+docker build -t <name> - < docker/Dockerfile
+docker run <application> -h
 ```
 
-Upload your tagged image to [docker hub](https://hub.docker.com/).
+Upload your tagged image to registry [docker hub](https://hub.docker.com/).
 
 ```
 docker login -u <username>
 
-docker tag ubuntu:latest <username>/ubuntu:latest
-docker push <username>/ubuntu:latest
+docker tag <name> <username>/<name>
+docker push <username>/<name>
 ```
-
-## manual installation of tinycc
-
-At first you need to download [tcc](https://bellard.org/tcc/). Use the latest version [0.9.27](http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2).
-
-```
-wget http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27.tar.bz2
-tar -xjf tcc-0.9.27.tar.bz2
-
-cd tcc-0.9.27
-
-./configure
-
-make 
-make test
-make install
-
-tcc -v
-```
-
-Now you should test the C-interpreter.
-
-```c
-tcc -run -
-#include <stdio.h>
-void main() {
-printf("Hello world!");
-}
-```
-
-Press `Ctrl-D` ...
