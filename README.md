@@ -20,9 +20,14 @@ npm start
 
 Install [docker](https://docs.docker.com/get-docker) and customize the configuration file `docker/Dockerfile`.
 
+`docker build -t <name> - < docker/Dockerfile`
+
+Verify the installed applications.
+
 ```
-docker build -t <name> - < docker/Dockerfile
-docker run <application> -h
+docker run <application1> -h
+docker run <application2> -h
+...
 ```
 
 Upload your tagged image to registry [docker hub](https://hub.docker.com/).
