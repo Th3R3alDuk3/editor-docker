@@ -55,7 +55,7 @@ docker.createImage({
 
             // start temporary docker container
             docker.run(
-                "th3r3alduk3/ubuntu",
+                "th3r3alduk3/editor-server-side",
                 ["bash", "-c", "echo '" + msg.data + "' > ./file; " + {
                     // selected compiler or interpreter
                     "tcc": "tcc -run ./file",
