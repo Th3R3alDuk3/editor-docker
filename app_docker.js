@@ -27,10 +27,10 @@ var streamStdout = Stream.Writable();
 var streamStderr = Stream.Writable();
 
 docker.createImage({
-    fromImage: "th3r3alduk3/ubuntu:latest"
+    fromImage: "th3r3alduk3/editor-server-side:latest"
 }).then(() => {
 
-    console.log("docker image = th3r3alduk3/editor-server-side")
+    console.log("docker image = th3r3alduk3/editor-server-side:latest")
 
     app.ws("/", (websocket, request) => {
 
