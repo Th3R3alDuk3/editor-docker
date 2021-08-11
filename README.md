@@ -5,6 +5,7 @@ This is an online **editor** that uses **server-side compilers**.
 ![editor-server-side](preview.gif "editor-server-side")
 
 I am using some well-known frameworks such as *websockets*, [dockerode](https://www.npmjs.com/package/dockerode) or [monaco-editor](https://microsoft.github.io/monaco-editor/) in this project.  
+Because of its popularity and prevalence, [Docker](https://www.docker.com/) is suitable for our purposes.  
 You can adapt any compiler or programming language as you wish.
 
 ## installation
