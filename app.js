@@ -9,7 +9,7 @@ expressWs(app);
 
 // support encoding
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
 // static files
 app.use(express.static("public"));
@@ -18,7 +18,7 @@ app.use("/node_modules", express.static("node_modules"));
 /**/
 
 // spawn child process
-const { spawn } = require("child_process");
+const {spawn} = require("child_process");
 
 app.ws("/", (websocket, request) => {
 
@@ -32,7 +32,7 @@ app.ws("/", (websocket, request) => {
         // TODO: install tinycc
         let subprocess = spawn(
             "tcc", ["-run", "-"], {
-                stdio: [ "pipe", "pipe", "pipe" ]
+                stdio: ["pipe", "pipe", "pipe"]
             }
         );
 

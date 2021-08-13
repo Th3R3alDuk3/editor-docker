@@ -10,7 +10,7 @@ var select = document.getElementById("select");
  * https://microsoft.github.io/monaco-editor/playground.html
  */
 
-require.config({ paths: { vs: "../node_modules/monaco-editor/min/vs" } });
+require.config({paths: {vs: "../node_modules/monaco-editor/min/vs"}});
 
 require(["vs/editor/editor.main"], function () {
 
@@ -19,7 +19,7 @@ require(["vs/editor/editor.main"], function () {
             language: "c",
             theme: "vs-dark",
             value: `#include <stdio.h>
-void main() { 
+void main() {
     printf("Hello world!\\n");
 }`
         }

@@ -9,7 +9,7 @@ expressWs(app);
 
 // support encoding
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
 // static files
 app.use(express.static("public"));
@@ -25,7 +25,7 @@ var Stream = require("stream");
 var streamStdout = Stream.Writable();
 var streamStderr = Stream.Writable();
 
-docker.createImage({ fromImage: dockerImage }).then(() => {
+docker.createImage({fromImage: dockerImage}).then(() => {
 
     app.ws("/", (websocket, request) => {
 
