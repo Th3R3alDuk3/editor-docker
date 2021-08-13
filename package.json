@@ -14,8 +14,7 @@
         "nodejs",
         "websockets",
         "tcc", "tinycc",
-        "docker",
-        "dockerode",
+        "docker", "dockerode",
         "monaco-editor"
     ],
     "author": "Paul Graff",

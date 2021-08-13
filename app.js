@@ -2,12 +2,12 @@ const express = require("express");
 const expressWs = require("express-ws");
 
 const app = express();
-// websocket support
+// support websockets
 expressWs(app);
 
 /**/
 
-// support encoded bodies
+// support encoding
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,25 +22,19 @@ const { spawn } = require("child_process");
 
 app.ws("/", (websocket, request) => {
 
-    websocket.on("message", msg => {
+    websocket.on("message", message => {
 
-        // msg type and data
-        msg = JSON.parse(msg);
+        message = JSON.parse(message);
 
-        if (msg.type != "tcc")
-            throw Error(msg.type + " is not supported");
+        if (message.type != "tcc")
+            throw Error(message.type + " is not supported");
 
         // TODO: install tinycc
         let subprocess = spawn(
             "tcc", ["-run", "-"], {
-                stdio: [
-                    "pipe", "pipe", "pipe"
-                ]
+                stdio: [ "pipe", "pipe", "pipe" ]
             }
         );
-
-        subprocess.stdin.write(msg.data);
-        subprocess.stdin.end();
 
         subprocess.stdout.on("data", (data) => {
             websocket.send(JSON.stringify({
@@ -54,9 +48,18 @@ app.ws("/", (websocket, request) => {
             }));
         });
 
-        subprocess.on("close", (code) => {
-            // console.log(`child process exited with code ${code}`);
+        subprocess.on("error", error => {
+            console.log(error);
         });
+
+        subprocess.on("close", (code) => {
+            console.log(`child process exited with code ${code}`);
+        });
+
+        if (subprocess.connected) {
+            subprocess.stdin.write(message.data);
+            subprocess.stdin.end();
+        }                
 
     });
 
@@ -68,11 +71,11 @@ app.ws("/", (websocket, request) => {
 
 });
 
-app.get("/", (request, response) => {
-    res.sendFile("index.html");
-});
-
 /**/
+
+app.get("/", (request, response) => {
+    response.sendFile("index.html");
+});
 
 app.listen(8080, "0.0.0.0", () => {
     console.log("http://0.0.0.0:8080")

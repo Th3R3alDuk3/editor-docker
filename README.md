@@ -15,14 +15,14 @@ You can adapt any compiler or programming language as you wish.
 
 ## installation
 
-Install [node.js](https://nodejs.org/en/download/), [docker](https://www.docker.com/products/docker-desktop) and all [dependencies](package.json).
+Install [node.js](https://nodejs.org/en/download/), [docker](https://www.docker.com/products/docker-desktop) and download all [dependencies](package.json).
   
 ```
 npm install
 npm start
 ```
     
-## container configuration
+## own container configuration (optional)
 
 Install [docker](https://docs.docker.com/get-docker) and customize the configuration file `docker/Dockerfile`.
 
@@ -33,7 +33,7 @@ RUN apt update && \
 ```
   
 `docker build -t <name> - < docker/Dockerfile`
-
+  
 Verify the installed applications.
 
 ```
@@ -42,7 +42,7 @@ docker run <application2> -h
 ...
 ```
 
-Upload your tagged image to registry [docker hub](https://hub.docker.com/).
+Upload your tagged image to the registry [docker hub](https://hub.docker.com/).
 
 ```
 docker login -u <username>
