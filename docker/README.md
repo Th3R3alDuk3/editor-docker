@@ -1,4 +1,4 @@
-## own container configuration (optional)
+## own container (optional)
 
 Install [docker](https://docs.docker.com/get-docker) and customize the configuration file `docker/Dockerfile`.
 
