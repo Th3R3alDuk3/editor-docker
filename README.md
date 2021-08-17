@@ -1,8 +1,8 @@
-# editor-server-side
+# editor-docker
   
-This is an online **editor** that uses **server-side compilers**.  
+This is an online **editor** that runs **docker** on the server side (multiple compilers).  
   
-![editor-server-side](preview.gif "editor-server-side")
+![editor-docker](preview.gif "editor-docker")
 
 I am using some well-known frameworks in this project.
 

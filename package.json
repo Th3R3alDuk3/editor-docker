@@ -1,14 +1,14 @@
 {
-    "name": "editor-server-side",
+    "name": "editor-docker",
     "version": "1.0.0",
-    "description": "online editor that uses server-side compilers",
+    "description": "online editor that runs docker on the server side (multiple compilers)",
     "main": "app.js",
     "scripts": {
-        "start": "node app_docker.js"
+        "start": "node app.js"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Th3R3alDuk3/editor-server-side.git"
+        "url": "git+https://github.com/Th3R3alDuk3/editor-docker.git"
     },
     "keywords": [
         "nodejs",
@@ -20,9 +20,9 @@
     "author": "Paul Graff",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/Th3R3alDuk3/editor-server-side/issues"
+        "url": "https://github.com/Th3R3alDuk3/editor-docker/issues"
     },
-    "homepage": "https://github.com/Th3R3alDuk3/editor-server-side#readme",
+    "homepage": "https://github.com/Th3R3alDuk3/editor-docker#readme",
     "dependencies": {
         "express": "^4.17.1",
         "express-ws": "^4.0.0",

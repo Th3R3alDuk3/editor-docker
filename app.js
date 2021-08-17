@@ -17,66 +17,73 @@ app.use("/node_modules", express.static("node_modules"));
 
 /**/
 
-// spawn child process
-const {spawn} = require("child_process");
+var Docker = require("dockerode");
+var docker = Docker();
+var dockerImage = "th3r3alduk3/editor-docker:latest" ;
 
-app.ws("/", (websocket, request) => {
+var Stream = require("stream");
+var streamStdout = Stream.Writable();
+var streamStderr = Stream.Writable();
 
-    websocket.on("message", message => {
+docker.createImage({fromImage: dockerImage}).then(() => {
 
-        message = JSON.parse(message);
+    app.ws("/", (websocket, request) => {
 
-        if (message.type != "tcc")
-            throw Error(message.type + " is not supported");
-
-        // TODO: install tinycc
-        let subprocess = spawn(
-            "tcc", ["-run", "-"], {
-                stdio: ["pipe", "pipe", "pipe"]
-            }
-        );
-
-        subprocess.stdout.on("data", (data) => {
+        // listen to stdout event
+        streamStdout._write = (chunk, encoding, done) => {
             websocket.send(JSON.stringify({
-                type: "stdout", data: data.toString()
-            }));
-        });
+                type: "stdout", data: chunk.toString()
+            })); done();
+        };
 
-        subprocess.stderr.on("data", (data) => {
+        // listen to stderr event
+        streamStderr._write = (chunk, encoding, done) => {
             websocket.send(JSON.stringify({
-                type: "stderr", data: data.toString()
-            }));
+                type: "stderr", data: chunk.toString()
+            })); done();
+        };
+
+        websocket.on("message", message => {
+
+            message = JSON.parse(message);
+
+            // start an instance of docker container
+            docker.run(dockerImage,
+                ["bash", "-c", "echo '" + message.data + "' > ./file; " + {
+                    // selected compiler or interpreter
+                    "tcc": "tcc -run ./file",
+                    "gcc": "gcc -o ./binary -x c ./file; ./binary",
+                    "python2": "python2 ./file",
+                    "python3": "python3 ./file"
+                }[message.type]],
+                [streamStdout, streamStderr], {
+                    Tty: false
+                }, (error, data, container) => {
+                    return container.remove();
+                }
+            );
+
         });
 
-        subprocess.on("error", error => {
-            console.log(error);
+        websocket.on("close", () => {
+            console.log("websocket disconnected ...");
         });
 
-        subprocess.on("close", (code) => {
-            console.log(`child process exited with code ${code}`);
-        });
-
-        if (subprocess.connected) {
-            subprocess.stdin.write(message.data);
-            subprocess.stdin.end();
-        }                
+        request.end();
 
     });
 
-    websocket.on("close", () => {
-        console.log("websocket disconnected ...");
+    /**/
+
+    app.get("/", (request, response) => {
+        response.sendFile("index.html");
     });
 
-    request.end();
 
-});
+    app.listen(8080, "0.0.0.0", () => {
+        console.log("http://0.0.0.0:8080")
+    });
 
-/**/
-
-app.get("/", (request, response) => {
-    response.sendFile("index.html");
-});
-
-app.listen(8080, "0.0.0.0", () => {
-    console.log("http://0.0.0.0:8080")
+}).catch(error => {
+    console.log("please start docker daemon");
 });

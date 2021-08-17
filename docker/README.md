@@ -18,7 +18,7 @@ docker run <application2> -h
 ...
 ```
 
-Upload your tagged image to the registry [docker hub](https://hub.docker.com/).
+Upload your tagged container to the registry [docker hub](https://hub.docker.com/).
 
 ```
 docker login -u <username>
