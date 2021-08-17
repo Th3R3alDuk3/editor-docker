@@ -13,8 +13,10 @@
     "keywords": [
         "nodejs",
         "websockets",
-        "tcc", "tinycc",
-        "docker", "dockerode",
+        "tcc",
+        "tinycc",
+        "docker",
+        "dockerode",
         "monaco-editor"
     ],
     "author": "Paul Graff",
